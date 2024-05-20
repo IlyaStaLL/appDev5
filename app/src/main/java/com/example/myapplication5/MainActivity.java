@@ -12,12 +12,16 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.widget.TimePicker;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,31 +31,93 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main3);
 
-        // Найти элементы RadioButton в разметке (layout) по их id
-        RadioButton RButton1 = findViewById(R.id.RButton1);
-        RadioButton RButton2 = findViewById(R.id.RButton2);
-        TextView selection = findViewById(R.id.selection);
-    }
-        public void onRadioButtonClicked(View view) {
-            // если переключатель отмечен
-            boolean checked = ((RadioButton) view).isChecked();
-            TextView selection = findViewById(R.id.selection);
-            // Получаем нажатый переключатель
-            switch(view.getId()) {
-                case R.id.RButton1:
-                    if (checked){
-                        selection.setText("Выбрана Java");
-                    }
-                    break;
-                case R.id.RButton2:
-                    if (checked){
-                        selection.setText("Выбран Kotlin");
-                    }
-                    break;
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        TextView textView = findViewById(R.id.seekBarValue);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView.setText(String.valueOf(progress));
             }
-        }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+    }
+
+
+//        TextView dateTextView = findViewById(R.id.dateTextView);
+//
+//        TimePicker timePicker = findViewById(R.id.timePicker);
+//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//            @Override
+//            public void onTimeChanged(TimePicker view, int hourOfDay, int minute)
+//            {
+//                dateTextView.setText("Время: " + view.getHour() + ":" + view.getMinute());
+//            }
+//        });
+//    }
+
+//        DatePicker datePicker = this.findViewById(R.id.datePicker);
+//        // Месяц начиная с нуля. Для отображения добавляем 1.
+//        datePicker.init(2020, 02, 01, new DatePicker.OnDateChangedListener() {
+//            @Override
+//            public void onDateChanged(DatePicker view, int year, int monthOfYear,
+//                                      int dayOfMonth) {
+//                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
+//                dateTextView.setText("Дата: " + view.getDayOfMonth() + "/" +
+//                        (view.getMonth() + 1) + "/" + view.getYear());
+//            }
+//        });
+//    }
+
+
+
+//        // получаем объект RadioGroup
+//        RadioGroup radGrp = findViewById(R.id.radios);
+//
+//        // обработка переключения состояния переключателя
+//        radGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup arg0, int id) {
+//                TextView selection = findViewById(R.id.selection); // Найти элемент TextView с id "selection"
+//                RadioButton radioButton = findViewById(id);
+//                if (radioButton != null) {
+//                    String selectedText = "Выбран вариант " + radioButton.getText();
+//                    selection.setText(selectedText);
+//                }
+//            }
+//        });
+//    }
+
+//        setContentView(R.layout.activity_main2);
+//
+//        // Найти элементы RadioButton в разметке (layout) по их id
+//        RadioButton RButton1 = findViewById(R.id.RButton1);
+//        RadioButton RButton2 = findViewById(R.id.RButton2);
+//        TextView selection = findViewById(R.id.selection); // Найти элемент TextView с id "selection"
+//
+//        // Установить обработчик нажатия на RadioButton
+//        RButton1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                selection.setText("Выбрана Java");
+//            }
+//        });
+//
+//        RButton2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                selection.setText("Выбран Kotlin");
+//            }
+//        });
+//    }
+
+
 
 //        ConstraintLayout layout2 = new ConstraintLayout(this);
 //        ConstraintLayout.LayoutParams layoutParams = new
